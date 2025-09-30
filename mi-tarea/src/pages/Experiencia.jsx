@@ -10,7 +10,7 @@ export default function Experiencia() {
                 <button className="btn ghost" onClick={() => navigator.clipboard?.writeText(youtubeUrl)}>Copiar</button>
             </div>
             <div style={{ marginTop: 12 }}>
-                <div style={{ position: 'relative', width: '100%', maxWidth: 720 }}>
+                <div className="video-wrapper">
                     <iframe
                         title="mi-experiencia"
                         src={youtubeUrl}

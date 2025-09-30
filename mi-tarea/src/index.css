@@ -10,46 +10,42 @@
 }
 
 /* Layout */
-html,
-body,
-#root {
-  height: 100%
+html, body, #root {
+  height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
+
+* { box-sizing: inherit; }
 
 body {
   margin: 0;
-  background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
-  color: #0f172a;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 12px;     
   display: flex;
   justify-content: center;
-  padding: 32px;
+  background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+  min-height: 100vh;       
 }
 
-/* App container: ahora column para top nav */
+
 .app {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: var(--max-w);
+  min-height: 100vh;        
   background: transparent;
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  overflow: hidden;
+  overflow: hidden;         
+  box-sizing: border-box;
 }
 
 /* Top navigation */
 nav {
   width: 100%;
-  height: 72px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 18px;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+  z-index: 30;
+  position: relative;      
 }
 
 nav .nav-inner {
@@ -101,16 +97,19 @@ nav ul {
 
 /* Main content */
 main {
+  width: 100%;
   flex: 1;
-  padding: 36px;
+  padding: 24px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  box-sizing: border-box;
+  overflow: auto;   
 }
 
 /* Card that centra y armoniza el contenido */
 .page-card {
-  width: 100%;
+  width: calc(100% - 16px);
   max-width: 780px;
   background: var(--card);
   border-radius: var(--radius);
@@ -146,7 +145,7 @@ main {
   border: 1px solid rgba(15, 23, 42, 0.06);
   border-radius: 8px;
   min-width: 0;
-  flex: 1
+  flex: 1 1 auto;
 }
 
 .input.small {
@@ -162,6 +161,7 @@ main {
   color: white;
   font-weight: 700;
   cursor: pointer;
+  flex: 0 0 auto;
   box-shadow: 0 6px 18px rgba(108, 99, 255, 0.12)
 }
 
@@ -190,30 +190,50 @@ ul {
   font-size: 13px
 }
 
-/* Responsive: keep nav compact on small screens */
-@media (max-width:880px) {
-  .app {
-    padding: 12px
-  }
+.video-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 60vh; 
+  border-radius: 8px;
+  overflow: hidden;
+  background:#e9e9e9;
+  border:1px solid rgba(15,23,42,0.06);
+}
 
-  nav {
-    height: 60px;
-    padding: 8px
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
   }
 
   nav .nav-inner {
-    justify-content: flex-start;
-    gap: 8px;
+    gap: 6px;
     overflow: auto;
-    padding-left: 8px
+    justify-content: flex-start;
+    padding-left: 6px
   }
 
-  .nav-link {
-    white-space: nowrap;
-    padding: 8px 10px
+  .page-card {
+    padding: 14px;
+    margin: 10px 4px;
+    max-height: calc(100vh - 120px);
   }
 
-  main {
-    padding: 18px
+  .video-wrapper {
+    max-height: 48vh;
+  }
+}
+/* Safe area para iOS notch */
+@supports (padding: env(safe-area-inset-bottom)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
