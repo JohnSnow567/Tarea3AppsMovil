@@ -5,7 +5,8 @@ import Home from './pages/Home'
 import Sumadora from './pages/Sumadora'
 import NumeroALetras from './pages/NumeroALetras'
 import TablaMultiplicar from './pages/TablaMultiplicar'
-
+import Experiencia from './pages/Experiencia'
+  
 
 export default function App(){
   return (
@@ -17,6 +18,7 @@ export default function App(){
           <Route path="/sumadora" element={<Sumadora/>} />
           <Route path="/numero-a-letras" element={<NumeroALetras/>} />
           <Route path="/tabla-multiplicar" element={<TablaMultiplicar/>} />
+          <Route path="/experiencia" element={<Experiencia/>} />
         </Routes>
       </main>
     </div>
